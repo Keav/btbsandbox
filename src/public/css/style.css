@@ -1,0 +1,67 @@
+/* Site Colors:
+  #1a446c - blue grey
+  #689dc1 - light blue
+  #d4e6f4 - very light blue
+  #eee4b9 - light tan
+  #8d0d19 - burgundy
+*/
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #fff;
+  font: 13px/15px courier;
+}
+
+img {
+  border: none;
+}
+
+table, tr, td {
+  border-collapse: collapse;
+  vertical-align: top;
+  text-align: left;
+  font: 13px/15px courier;
+}
+
+a {
+  color: #8d0d19;
+}
+
+#header {
+  height: 70px;
+  text-align: left;
+  background: #1a446c;
+  color: #d4e6f4;
+}
+
+#header h1 {
+  padding: 1em;
+}
+
+/* Note: IE5 & 6 won't understand min-height */
+
+#main {
+  min-height: 600px;
+  width: 100%;
+  background: #eee4b9;
+  padding: 2em;
+}
+
+#footer {
+  height: 2em;
+  padding: 1em;
+  text-align: center;
+  background: #1a446c;
+  color: #d4e6f4;
+}
+
+table.bordered tr th, table.bordered tr td {
+  border: 1px solid #000;
+}
