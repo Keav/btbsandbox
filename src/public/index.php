@@ -1,7 +1,7 @@
 <?php
-  require_once("../../includes/functions.php");
-  require_once("../../includes/database.php");
-  require_once("../../includes/user.php");
+  require_once("../includes/functions.php");
+  require_once("../includes/database.php");
+  require_once("../includes/user.php");
 
   $user = User::find_by_id(1);
 
@@ -28,7 +28,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Photo Gallery</title>
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
   <div id="header">
