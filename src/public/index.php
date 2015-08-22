@@ -1,7 +1,7 @@
 <?php
-  require_once("../includes/functions.php");
-  require_once("../includes/database.php");
-  require_once("../includes/user.php");
+  require_once("../../includes/functions.php");
+  require_once("../../includes/database.php");
+  require_once("../../includes/user.php");
 
   $user = User::find_by_id(1);
 
@@ -23,14 +23,21 @@
     echo "Name: " . $user->full_name() . "<br>";
   }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Photo Gallery</title>
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-  <h1>Document</h1>
+  <div id="header">
+    <h1>Photo Gallery</h1>
+  </div>
+  <div id="main">
+    <h2>Menu</h2>
+  </div>
+
+  <div id="footer">Copyright &copy; <?php echo date("Y", time()); ?>, btbsandbox</div>
 </body>
 </html>
