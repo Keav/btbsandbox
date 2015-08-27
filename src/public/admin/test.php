@@ -9,10 +9,10 @@
 <?php
   // Create new record in the database
   // $user = new User();
-  // $user->username = "katebeckinsale";
+  // $user->username = "user2";
   // $user->password = "secret";
-  // $user->first_name = "Kate";
-  // $user->last_name = "Beckinsale";
+  // $user->first_name = "User";
+  // $user->last_name = "Number2";
   // $user->create();
 
   // Update a record in the database
