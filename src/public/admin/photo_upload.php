@@ -13,7 +13,7 @@
   $message = "";
 
   if(isset($_POST['submit'])) {
-    $photo = new Photograph;
+    $photo = new Photograph();
 
     $photo->caption = $_POST['caption'];
     $photo->attach_file($_FILES['file_upload']);
@@ -23,7 +23,7 @@
       $message = "Photograph uploaded succesfully.";
     } else {
       // Failure
-      $message = join("<br", $photo->errors);
+      $message = join("<br>", $photo->errors);
     }
   }
 
