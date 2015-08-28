@@ -101,6 +101,41 @@
         }
       }
     }
+
+    public function destroy() {
+      // First remove the database entry
+      if($this->delete()) {
+        // then remove the file
+        // Note that even though the database entry is gone, this object
+        // is still around (which lets us use $this->image_path()).
+        $target_path = DOCUMENT_ROOT.DS.'public'.DS.$this->image_path();
+        return unlink($target_path) ? true : false;
+      } else {
+        // database delete failed
+        return false;
+      }
+    }
+
+    public function image_path() {
+      return $this->upload_dir.DS.$this->filename;
+    }
+
+    public function size_as_text() {
+      if($this->size < 1024) {
+        return "{$this->size} bytes";
+      } elseif($this->size < 1048576) {
+        $size_kb = round($this->size/1024);
+        return "{$size_kb} KB";
+      } else {
+        $size_mb = round($this->size/1048576, 1);
+        return "{$size_mb} MB";
+      }
+    }
+
+    public function comments() {
+      return Comment::find_comments_on($this->id);
+    }
+
   }
 
 ?>

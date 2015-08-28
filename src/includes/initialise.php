@@ -1,5 +1,5 @@
 <?php
-  // ob_start();
+  ob_start();
 
   // Define the core paths
   // Define them as absolute paths to make sure that require_once works as expected
@@ -23,8 +23,11 @@
   require_once(LIB_PATH.'session.php');
   require_once(LIB_PATH.'database.php');
   require_once(LIB_PATH.'database_object.php');
+  require_once(LIB_PATH.'pagination.php');
 
   // load databse related classes
   require_once(LIB_PATH.'user.php');
   require_once(LIB_PATH.'photograph.php');
+  require_once(LIB_PATH.'comment.php');
+
 ?>

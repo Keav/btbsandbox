@@ -10,8 +10,6 @@
                               //    1048576 =   1MB
                               //   10485760 =  10MB
 
-  $message = "";
-
   if(isset($_POST['submit'])) {
     $photo = new Photograph();
 
@@ -20,7 +18,8 @@
 
     if($photo->save()) {
       // Success
-      $message = "Photograph uploaded succesfully.";
+      $session->message("Photograph uploaded succesfully.");
+      redirect_to('list_photos.php');
     } else {
       // Failure
       $message = join("<br>", $photo->errors);
@@ -41,5 +40,9 @@
   <p>Caption: <input type="text" name="caption" calue=""></p>
   <input type="submit" name="submit" value="Upload">
 </form>
+
+<hr>
+
+<a href="list_photos.php">View Photos</a>
 
 <?php include_layout_template("admin_footer.php") ?>
