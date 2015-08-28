@@ -8,6 +8,8 @@
 *.bmp
 *.tiff
 
+smtpmail.php
+
 # ======================
 # Explicitly include
 # ======================

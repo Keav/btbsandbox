@@ -24,6 +24,7 @@
   require_once(LIB_PATH.'database.php');
   require_once(LIB_PATH.'database_object.php');
   require_once(LIB_PATH.'pagination.php');
+  require_once(LIB_PATH.DS."phpMailer".DS."PHPMailerAutoload.php");
 
   // load databse related classes
   require_once(LIB_PATH.'user.php');
