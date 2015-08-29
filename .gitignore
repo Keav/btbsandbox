@@ -15,5 +15,5 @@ smtpmail.php
 # ======================
 
 !config.php
-
+!.htaccess
 !btbsandbox.sql
