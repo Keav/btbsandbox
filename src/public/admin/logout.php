@@ -33,8 +33,6 @@
       // if(isset($session->user_id)) { // Use isset to check if a variable is set
         log_action('Logout', "by {$user->full_name()}");
         // echo "Logout by {$user->full_name()} <br>";
-      } else {
-        echo "not set.";
       }
 
   $session->logout();
