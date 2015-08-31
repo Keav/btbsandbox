@@ -40,7 +40,7 @@
         $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
         // session_regenerate_id(true);
         if (isset($_COOKIE[session_name()])) {
-          setcookie(session_name(), $_COOKIE[session_name()], time()+$session_lifetime, '/');
+          setcookie(session_name(), $_COOKIE[session_name()], time()+$session_lifetime, '/', '', 0, true);
         }
       }
     }
