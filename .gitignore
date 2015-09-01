@@ -8,7 +8,7 @@
 *.bmp
 *.tiff
 
-smtpmail.php
+smtp_config.php
 
 # ======================
 # Explicitly include
