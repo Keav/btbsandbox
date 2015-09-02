@@ -42,8 +42,6 @@
     public function comment_mail_notification() {
       $mail = new PHPMailer;
 
-      $mail->SMTPDebug = 3;
-
       $mail->isSMTP();
       $mail->Host = SMTP_HOST;
       $mail->SMTPAuth = SMTP_AUTH;
