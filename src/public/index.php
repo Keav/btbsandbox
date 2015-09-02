@@ -1,43 +1,101 @@
 <?php
-  require_once("../includes/functions.php");
-  require_once("../includes/database.php");
-  require_once("../includes/user.php");
+  require_once("../includes/initialise.php");
 
-  $user = User::find_by_id(1);
+  // 1. the current page number ($current_page)
+  $page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
 
-  echo $user->id . "<br>";
-  echo $user->full_name() . "<br>";
-  echo $user->password . "<br>";
+  // 2. records per page ($per_page)
+  $per_page = 2;
 
-  echo "<hr>";
+  // 3. toatl record count ($total_count)
+  $total_count = Photograph::count_all();
 
-  // $user_set = User::find_all();
-  // while ($user = $database->fetch_array($user_set)) {
-  //   echo "User: " . $user['username'] . "<br>";
-  //   echo "Name: " . $user['first_name'] . " " . $user['last_name'] . "<br><hr>";
-  // }
+  // Find all photos
+  // use pagination instead
+  // $photos = Photograph::find_all();
 
-  $users = User::find_all();
-  foreach($users as $user) {
-    echo "User: " . $user->username . "<br>";
-    echo "Name: " . $user->full_name() . "<br>";
-  }
+  $pagination = new Pagination($page, $per_page, $total_count);
+
+  // Instead of finding all records, just fine the records
+  // for this page.
+  $sql = "SELECT * FROM photographs ";
+  $sql .= "LIMIT {$per_page} ";
+  $sql .= "OFFSET {$pagination->offset()}";
+  $photos = Photograph::find_by_sql($sql);
+
+  // Need to add ?page=$page to all links we want to
+  // maintain the current page (or store $page in $session)
+
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Photo Gallery</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
-  <div id="header">
-    <h1>Photo Gallery</h1>
-  </div>
-  <div id="main">
-    <h2>Menu</h2>
+
+<?php include_layout_template('header.php'); ?>
+
+    <a href="admin/">Admin Page</a><br>
+
+    <h2>Home Page</h2>
+
+    <?php echo output_message($message); ?>
+
+    <?php foreach($photos as $photo): ?>
+      <div style="float: left; overflow:auto; margin-left: 20px">
+        <a href="photo.php?id=<?php echo $photo->id; ?>">
+          <img src="<?php echo $photo->image_path(); ?>" width="200">
+        </a>
+        <p><?php echo $photo->caption; ?></p>
+      </div>
+    <?php endforeach; ?>
+
+    <br style="clear: both;">
+
+    <div id="pagination">
+      <?php
+        if($pagination->total_pages() > 1) {
+
+          if($pagination->has_previous_page()) {
+            echo " <a href=\"index.php?page=";
+            echo $pagination->previous_page();
+            echo "\">&laquo; Previous</a> ";
+          }
+
+          for($i=1; $i <= $pagination->total_pages(); $i++) {
+            if($i == $page) {
+              echo " <span class=\"selected\">{$i}</span> ";
+            } else {
+              echo " <a href=\"index.php?page={$i}\">{$i}</a> ";
+            }
+          }
+
+          if($pagination->has_next_page()) {
+            echo " <a href=\"index.php?page=";
+            echo $pagination->next_page();
+            echo "\">Next &raquo;</a> ";
+          }
+        }
+      ?>
+    </div>
+
+    <hr>
+
+    <?php
+      $user = User::find_by_id(1);
+
+      echo "UserID: " . $user->id . "<br>";
+      echo "Full Name: " . $user->full_name() . "<br>";
+      echo "Password: " . $user->password . "<br>";
+    ?>
+
+    <hr>
+
+    <?php
+      $users = User::find_all();
+
+      foreach($users as $user) {
+        echo "User: " . $user->username . "<br>";
+        echo "Full Name: " . $user->full_name() . "<br>";
+        echo "<br>";
+      }
+    ?>
+
   </div>
 
-  <div id="footer">Copyright &copy; <?php echo date("Y", time()); ?>, btbsandbox</div>
-</body>
-</html>
+<?php include_layout_template('footer.php'); ?>

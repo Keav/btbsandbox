@@ -1,14 +1,11 @@
 <?php
-  require_once("../../includes/functions.php");
-  require_once("../../includes/session.php");
-  require_once("../../includes/database.php");
-  require_once("../../includes/user.php");
+  require_once("../../includes/initialise.php");
 
   if($session->is_logged_in()) {
     redirect_to("index.php");
   }
 
-  // Remeber to give you form's submit tag a name="submit" attribute!
+  // Remeber to give your form's submit tag a name="submit" attribute!
   if (isset($_POST['submit'])) { // Form has been submitted
 
     $username = trim($_POST['username']);
@@ -19,6 +16,7 @@
 
     if ($found_user) {
       $session->login($found_user);
+      log_action('Login', "{$found_user->username} logged in.");
       redirect_to("index.php");
     } else {
       // username/password combo was not found in the database
@@ -29,19 +27,9 @@
     $password = "";
   }
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Photo Gallery</title>
-  <link href="../css/style.css" media="all" rel="stylesheet" type="text/css">
-</head>
-<body>
-  <div id="header">
-    <h1>Photo Gallery</h1>
-  </div>
-  <div id="main">
+<?php include_layout_template('admin_header.php'); ?>
+
     <h2>Staff Login</h2>
     <?php echo output_message(); ?>
 
@@ -67,7 +55,5 @@
       </table>
     </form>
     </div>
-    <div id="footer">Copyright &copy; <?php echo date("Y", time()); ?>, btbsandbox</div>
-</body>
-</html>
-<?php if(isset($database)) { $database->close_connection(); } ?>
+
+<?php include_layout_template('footer.php'); ?>

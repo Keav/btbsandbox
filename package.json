@@ -1,9 +1,9 @@
 {
-  "name": "cambriantransport",
+  "name": "btbsandbox",
   "version": "0.1.0",
-  "description": "Commercial Website of Cambrian Transport Limited",
+  "description": "Learning PHP & MySQL BTB",
   "private": true,
-  "homepage": "http://cambriantransport.com",
+  "homepage": "",
   "author": {
     "name": "Chris Keavey",
     "email": "chris@chriskeavey.com",
@@ -12,7 +12,7 @@
   "main": "Gruntfile.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Keav/cambriantransport.git"
+    "url": "https://github.com/Keav/btbsandbox.git"
   },
   "devDependencies": {
     "grunt": "*",

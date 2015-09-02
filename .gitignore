@@ -1,7 +1,20 @@
 # ======================
+# Explicitly exclude
+# ======================
+
+*.jpg
+*.png
+*.gif
+*.bmp
+*.tiff
+
+smtp_config.php
+
+# ======================
 # Explicitly include
 # ======================
 
 !config.php
-
+!.htaccess
 !btbsandbox.sql
+!sql_queries.sql

@@ -1,5 +1,5 @@
 <?php
-  require_once("config.php");
+  require_once(LIB_PATH.'config.php');
 
   class MySQLDatabase {
 

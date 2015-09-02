@@ -1,22 +1,19 @@
 <?php
-  require_once("../../includes/functions.php");
-  require_once("../../includes/session.php");
+  require_once('../../includes/initialise.php');
+
   if (!$session->is_logged_in()) { redirect_to("login.php"); }
 ?>
 
-<html>
-  <head>
-    <title>Photo Gallery</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-  </head>
-  <body>
-    <div id="header">
-      <h1>Photo Gallery</h1>
-    </div>
-    <div id="main">
-      <h2>Menu</h2>
+<?php include_layout_template('admin_header.php') ?>
 
+  <h2>Menu</h2>
 
-      <div id="footer">Copyright <?php echo date("Y", time()); ?>, Sandbox</div>
-  </body>
-</html>
+  <?php echo output_message($message); ?>
+
+  <ul>
+    <li><a href="list_photos.php">View Photos</a></li>
+    <li><a href="logfile.php">View Logfile</a></li>
+    <li><a href="logout.php">Logout</a></li>
+  </ul>
+
+<?php include_layout_template('admin_footer.php'); ?>
