@@ -31,13 +31,15 @@
     }
 
     private function maintain_session($session_lifetime) {
+      // Force server side logout at expiration of session time (from last activity), regardless of client side Cookie
+      // In theory, this will never run! - Unless cookie time is longer than session time and a user attempts activity in that window.
       if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $session_lifetime)) {
         // last request was more than 30 minutes ago
         // session_unset();     // unset $_SESSION variable for the run-time
         // session_destroy();   // destroy session data in storage
-        logout();
-        log_action('Auto Logged Out', "USER: {$user->full_name()}");
+        $this->logout();
       } else {
+        // If activity, reset server side session timer and reset client side Cookie expiration
         $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
         // session_regenerate_id(true);
         if (isset($_COOKIE[session_name()])) {
