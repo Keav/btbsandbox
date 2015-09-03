@@ -13,9 +13,12 @@
 
     function __construct() {
       $session_lifetime = 1800;
+      // $idletime = 1800;
       session_set_cookie_params($session_lifetime);
       session_start();
       // session_regenerate_id(true);
+
+      // $_SESSION['timestamp']=time();
 
       $this->maintain_session($session_lifetime);
       $this->regenerate_session_id($session_lifetime);
@@ -29,6 +32,17 @@
         // actions to take straight away if user is not logged in
       }
     }
+
+    // private function session_idle($idletime) {
+    //   if (time()-$_SESSION['timestamp']>$idletime) {
+    //     $this->logout();
+    //   } else {
+    //     $_SESSION['timestamp']=time();
+    //     if (isset($_COOKIE[session_name()])) {
+    //       setcookie(session_name(), $_COOKIE[session_name()], time()+$idletime, '/', '', 0, true);
+    //     }
+    //   }
+    // }
 
     private function maintain_session($session_lifetime) {
       // Force server side logout at expiration of session time (from last activity), regardless of client side Cookie
