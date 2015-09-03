@@ -34,7 +34,7 @@
     }
 
     // private function session_idle($idletime) {
-    //   if (time()-$_SESSION['timestamp']>$idletime) {
+    //   if ((time()-$_SESSION['timestamp'])>$idletime) {
     //     $this->logout();
     //   } else {
     //     $_SESSION['timestamp']=time();
